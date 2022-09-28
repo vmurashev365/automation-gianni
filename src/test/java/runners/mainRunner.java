@@ -5,6 +5,7 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(features = {"classpath:features"}, glue = {"stepDefinitions"},
-        tags = "@test123", monochrome = true, dryRun = false)
+        tags = "@contact-us", monochrome = true, dryRun = false,
+        plugin = {"pretty", "html:target/cucumber.html", "json:target/cucmber.json"})
 public class mainRunner extends AbstractTestNGCucumberTests {
 }
