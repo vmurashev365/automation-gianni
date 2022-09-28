@@ -2,8 +2,11 @@
 
 Feature: WebDriver University - Contact Us Page
 
-  Scenario: Validate Successful Submitting - Unique Data
+  Background:
     Given I access the webdiver university contact us page
+
+  Scenario: Validate Successful Submitting - Unique Data
+
     When I enter a unique first name
     And I enter a unique last name
     And I enter a unique email address
@@ -13,7 +16,6 @@ Feature: WebDriver University - Contact Us Page
 
 
   Scenario: Validate Successful Submitting - Specific  Data
-    Given I access the webdiver university contact us page
     When I enter  a specific first name Sarah
     And I enter  a specific last name Woods
     And I enter a specific email address sarah_woods123@mail.com

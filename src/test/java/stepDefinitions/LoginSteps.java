@@ -51,7 +51,7 @@ public class LoginSteps {
 
     @Then("I should presented with successful login message")
     public void i_should_presented_with_successful_login_message() {
-String login_message = driver.switchTo().alert().getText();
+        String login_message = driver.switchTo().alert().getText();
         Assert.assertEquals(login_message, "validation succeeded", "The login is unsuccessful");
     }
 
