@@ -33,11 +33,37 @@ public class LoginSteps {
     public void i_access_the_webdiver_university_login_page() {
         driver.get("https://www.webdriveruniversity.com/Login-Portal/index.html?");
     }
-
-    @When("I enter username {string}")
-    public void i_enter_username(String username) {
+    @When("I enter a username {}")
+    public void i_enter_a_username(String username) {
         driver.findElement(By.id("text")).sendKeys(username);
     }
+
+    @And("I enter a password {}")
+    public void i_enter_a_password(String password) {
+        driver.findElement(By.id("password")).sendKeys(password);
+    }
+
+    @Then("I should be presented with the successful login message")
+    public void i_should_be_presented_with_the_successful_login_message() {
+        String login_Message = driver.switchTo().alert().getText();
+        Assert.assertEquals(login_Message, "validation succeeded");
+    }
+
+    @Then("I should be presented with the unsuccessful login message")
+    public void i_should_be_presented_with_the_unsuccessful_login_message() {
+        String login_Message = driver.switchTo().alert().getText();
+        Assert.assertEquals(login_Message, "validation failed");
+    }
+
+    @And("I click on the login button")
+    public void i_click_on_the_login_button() {
+        driver.findElement(By.id("login-button")).click();
+    }
+     @When("I enter username {word}")
+    public void i_enter_username_webdriver(String username) {
+        driver.findElement(By.id("text")).sendKeys(username);
+    }
+
 
     @And("I enter password {}")
     public void i_enter_password(String password) {
@@ -49,16 +75,11 @@ public class LoginSteps {
         driver.findElement(By.id("login-button")).click();
     }
 
-    @Then("I should presented with successful login message")
-    public void i_should_presented_with_successful_login_message() {
-        String login_message = driver.switchTo().alert().getText();
-        Assert.assertEquals(login_message, "validation succeeded", "The login is unsuccessful");
-    }
 
-    @Then("I should presented with unsuccessful login message")
-    public void i_should_presented_with_unsuccessful_login_message() {
+    @Then("I should presented with the following login validation message {}")
+    public void i_should_presented_with_the_following_login_validation_message_validation_succeeded(String expectedMessage) {
         String login_message = driver.switchTo().alert().getText();
-        Assert.assertEquals(login_message, "validation failed", "The login is successful");
+        Assert.assertEquals(login_message, expectedMessage);
     }
 
 }
