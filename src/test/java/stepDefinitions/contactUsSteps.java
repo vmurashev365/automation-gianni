@@ -6,14 +6,17 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import stepDefinitions.base.Hooks;
 
+import static driver.DriverFactory.getDriver;
 
-public class contactUsSteps extends Hooks {
 
+public class contactUsSteps {
 
+private WebDriver driver = (WebDriver) getDriver();
 
     public String generateRandomNumber(int length){
         return RandomStringUtils.randomNumeric(length);
