@@ -15,6 +15,7 @@ public class LoginSteps extends Base_PO {
     public void i_access_the_webdiver_university_login_page() {
         navigate_To_URL("https://www.webdriveruniversity.com/Login-Portal/index.html?");
     }
+
     @When("I enter a username {}")
     public void i_enter_a_username(String username) {
         driver.findElement(By.id("text")).sendKeys(username);
@@ -39,9 +40,12 @@ public class LoginSteps extends Base_PO {
 
     @And("I click on the login button")
     public void i_click_on_the_login_button() {
-        driver.findElement(By.id("login-button")).click();
+
+        //driver.findElement(By.id("login-button")).click();
+        webElementToBeClickable(By.id("login-button"));
     }
-     @When("I enter username {word}")
+
+    @When("I enter username {word}")
     public void i_enter_username_webdriver(String username) {
         driver.findElement(By.id("text")).sendKeys(username);
     }
@@ -54,7 +58,9 @@ public class LoginSteps extends Base_PO {
 
     @And("I click on login button")
     public void i_click_on_login_button() {
-        driver.findElement(By.id("login-button")).click();
+
+        //driver.findElement(By.id("login-button")).click();
+        webElementToBeClickable(By.id("login-button"));
     }
 
 
