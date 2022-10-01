@@ -13,7 +13,7 @@ import pageObjects.Base_PO;
 
 public class contactUsSteps extends Base_PO {
 
-private WebDriver driver = (WebDriver) getDriver();
+    private WebDriver driver = (WebDriver) getDriver();
 
 
     @Given("I access the webdiver university contact us page")
@@ -34,7 +34,7 @@ private WebDriver driver = (WebDriver) getDriver();
     @And("I enter a unique email address")
     public void i_enter_a_unique_email_address() {
         sendKeys(By.xpath("//input[@name='email']"), "AutoEmail" + generateRandomNumber(10) + "@mail.com");
-        }
+    }
 
 
     @And("I enter a unique comment")
@@ -47,14 +47,17 @@ private WebDriver driver = (WebDriver) getDriver();
         //driver.findElement(By.xpath("//input[@name='first_name']")).sendKeys(firstName);
         sendKeys(By.xpath("//input[@name='first_name']"), firstName);
     }
+
     @When("I enter  a specific last name {word}")
     public void i_enter_a_specific_last_name(String lastName) {
         driver.findElement(By.xpath("//input[@name='last_name']")).sendKeys(lastName);
     }
+
     @When("I enter a specific email address {word}")
     public void i_enter_a_specific_email_address(String emailAddress) {
         driver.findElement(By.xpath("//input[@name='email']")).sendKeys(emailAddress);
     }
+
     @When("I enter a specific comment {string}")
     public void i_enter_a_specific_comment(String comment) {
         driver.findElement(By.xpath("//textarea[@name='message']")).sendKeys(comment);
@@ -64,12 +67,13 @@ private WebDriver driver = (WebDriver) getDriver();
     @And("I click Submit button")
     public void i_click_submit_button() {
 
-        driver.findElement(By.xpath("//input[@type='submit']")).click();
+        //driver.findElement(By.xpath("//input[@type='submit']")).click();
+        webElementToBeClickable(By.xpath("//input[@type='submit']"));
     }
 
     @Then("I should be presented with contact us submission message")
     public void i_should_be_presented_with_contact_us_submission_message() {
-        WebElement contactUsSubmissionMessage= driver.findElement(By.xpath("//div[@id='contact_reply']/h1"));
+        WebElement contactUsSubmissionMessage = driver.findElement(By.xpath("//div[@id='contact_reply']/h1"));
         Assert.assertEquals(contactUsSubmissionMessage.getText(), "Thank You for your Message!");
     }
 
