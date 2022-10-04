@@ -6,6 +6,7 @@ Feature: WebDriver University - login page
   Background:
     Given I access the webdiver university login page
 
+    @login1
   Scenario: Validate Successful Login
     When I enter a username webdriver
     And I enter a password webdriver123
