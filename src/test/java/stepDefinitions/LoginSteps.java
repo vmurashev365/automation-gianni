@@ -5,25 +5,29 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pageObjects.Base_PO;
+import pageObjects.Login_PO;
 
 
 public class LoginSteps extends Base_PO {
-
     private WebDriver driver = getDriver();
+    private Login_PO login_po;
+    public LoginSteps(Login_PO login_po) {
+        this.login_po = login_po;
+    }
 
     @Given("I access the webdiver university login page")
     public void i_access_the_webdiver_university_login_page() {
-        navigate_To_URL("https://www.webdriveruniversity.com/Login-Portal/index.html?");
+        login_po.navigate_toWeb_DriverUniversity_LoginPage();
     }
 
     @When("I enter a username {}")
     public void i_enter_a_username(String username) {
-        driver.findElement(By.id("text")).sendKeys(username);
+        login_po.setUserName(username);
     }
 
     @And("I enter a password {}")
     public void i_enter_a_password(String password) {
-        driver.findElement(By.id("password")).sendKeys(password);
+        login_po.setPassword(password);
     }
 
     @Then("I should be presented with the successful login message")
@@ -42,7 +46,7 @@ public class LoginSteps extends Base_PO {
     public void i_click_on_the_login_button() {
 
         //driver.findElement(By.id("login-button")).click();
-        webElementToBeClickable(By.id("login-button"));
+        login_po.click_OnLoginButton();
     }
 
     @When("I enter username {word}")
