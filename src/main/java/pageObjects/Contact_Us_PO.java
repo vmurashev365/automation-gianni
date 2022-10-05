@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.testng.Assert;
+import utils.Global_Vars;
 
 
 public class Contact_Us_PO extends Base_PO {
@@ -20,7 +21,7 @@ public class Contact_Us_PO extends Base_PO {
     }
 
     public void navigateWebDriverContactUsPage() {
-        navigate_To_URL("https://webdriveruniversity.com/Contact-Us/contactus.html");
+        navigate_To_URL(Global_Vars.HOME_URL + "/Contact-Us/contactus.html");
     }
 
 
