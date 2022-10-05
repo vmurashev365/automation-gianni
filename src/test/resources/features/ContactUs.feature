@@ -15,7 +15,7 @@ Feature: WebDriver University - Contact Us Page
     And I click Submit button
     Then I should be presented with contact us submission message
 
-
+  @contact-us-spec
   Scenario: Validate Successful Submitting - Specific  Data
     When I enter  a specific first name Sarah
     And I enter  a specific last name Woods
