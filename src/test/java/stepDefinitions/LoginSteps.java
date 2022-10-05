@@ -11,6 +11,7 @@ import pageObjects.Login_PO;
 public class LoginSteps extends Base_PO {
     private WebDriver driver = getDriver();
     private Login_PO login_po;
+
     public LoginSteps(Login_PO login_po) {
         this.login_po = login_po;
     }
@@ -32,14 +33,12 @@ public class LoginSteps extends Base_PO {
 
     @Then("I should be presented with the successful login message")
     public void i_should_be_presented_with_the_successful_login_message() {
-        String login_Message = driver.switchTo().alert().getText();
-        Assert.assertEquals(login_Message, "validation succeeded");
+        login_po.validateForMessage("validation succeeded");
     }
 
     @Then("I should be presented with the unsuccessful login message")
     public void i_should_be_presented_with_the_unsuccessful_login_message() {
-        String login_Message = driver.switchTo().alert().getText();
-        Assert.assertEquals(login_Message, "validation failed");
+        login_po.validateForMessage("validation failed");
     }
 
     @And("I click on the login button")
@@ -64,14 +63,13 @@ public class LoginSteps extends Base_PO {
     public void i_click_on_login_button() {
 
         //driver.findElement(By.id("login-button")).click();
-        webElementToBeClickable(By.id("login-button"));
+        waitElementToBeClickable(By.id("login-button"));
     }
 
 
     @Then("I should presented with the following login validation message {}")
     public void i_should_presented_with_the_following_login_validation_message_validation_succeeded(String expectedMessage) {
-        String login_message = driver.switchTo().alert().getText();
-        Assert.assertEquals(login_message, expectedMessage);
+        login_po.validateForMessage(expectedMessage);
     }
 
 }

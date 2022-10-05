@@ -33,6 +33,11 @@ public class Login_PO extends Base_PO {
     }
 
     public void click_OnLoginButton() {
-        webElementToBeClickable(loginButton);
+        waitElementToBeClickable(loginButton);
     }
+
+    public void validateForMessage(String text){
+        waitForAlertAndValidateMessage(text);
+    }
+
 }

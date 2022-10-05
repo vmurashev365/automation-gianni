@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -40,14 +41,21 @@ public class Base_PO {
         wait.until(ExpectedConditions.elementToBeClickable(by)).sendKeys(textToType);
     }
 
-    public void webElementToBeClickable(By by) {
+    public void waitElementToBeClickable(By by) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(by)).click();
     }
 
-    public void webElementToBeClickable(WebElement element) {
+    public void waitElementToBeClickable(WebElement element) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+    }
+
+    public void waitForAlertAndValidateMessage (String text) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.alertIsPresent());
+        String alertMessageText = getDriver().switchTo().alert().getText();
+        Assert.assertEquals(alertMessageText, text);
     }
 
 }
