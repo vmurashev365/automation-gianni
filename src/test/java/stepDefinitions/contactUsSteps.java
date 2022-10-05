@@ -68,7 +68,7 @@ public class contactUsSteps extends Base_PO {
     public void i_click_submit_button() {
 
         //driver.findElement(By.xpath("//input[@type='submit']")).click();
-        webElementToBeClickable(By.xpath("//input[@type='submit']"));
+        waitElementToBeClickable(By.xpath("//input[@type='submit']"));
     }
 
     @Then("I should be presented with contact us submission message")
