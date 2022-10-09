@@ -14,7 +14,7 @@ import java.util.Properties;
 public class DriverFactory {
     private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
 
-    public static WebDriver getDriver()  {
+    public static WebDriver getDriver() {
         if (webDriver.get() == null) {
             try {
                 webDriver.set(createDriver());
@@ -24,7 +24,6 @@ public class DriverFactory {
         }
         return webDriver.get();
     }
-
 
 
     private static WebDriver createDriver() throws IOException {
@@ -52,11 +51,16 @@ public class DriverFactory {
 
     private static String getBrowserType() {
         String browserType = null;
+        String browserTypeRemoteValue = System.getProperty("browserType");
         try {
-            Properties properties = new Properties();
-            FileInputStream file = new FileInputStream(System.getProperty("user.dir") + "/src/main/java/properties/config.properties");
-            properties.load(file);
-            browserType = properties.getProperty("browser").toLowerCase().trim();
+            if (browserTypeRemoteValue == null || browserTypeRemoteValue.isEmpty()) {
+                Properties properties = new Properties();
+                FileInputStream file = new FileInputStream(System.getProperty("user.dir") + "/src/main/java/properties/config.properties");
+                properties.load(file);
+                browserType = properties.getProperty("browser").toLowerCase().trim();
+            } else {
+                browserType = browserTypeRemoteValue;
+            }
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
