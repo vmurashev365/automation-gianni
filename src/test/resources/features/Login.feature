@@ -19,7 +19,7 @@ Feature: WebDriver University - login page
     And I click on the login button
     Then I should be presented with the unsuccessful login message
 
-    @smoke @ignore
+    @smoke 
   Scenario Outline: Validate Successful & Unsuccessful Login
     When I enter username <username>
     And I enter password <password>
