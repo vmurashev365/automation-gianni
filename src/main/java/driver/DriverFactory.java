@@ -4,8 +4,12 @@ import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -42,6 +46,20 @@ public class DriverFactory {
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
                 driver = new FirefoxDriver(firefoxOptions);
+                break;
+            }
+            case "edge" -> {
+                System.setProperty("webdriver.edge.driver", System.getProperty("user.dir") + "/src/main/java/driver/drivers/msedgedriver.exe");
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                driver = new EdgeDriver(edgeOptions);
+                break;
+            }
+            case "iexplorer" -> { //does not work
+                System.setProperty("webdriver.ie.driver", System.getProperty("user.dir") + "/src/main/java/driver/drivers/IEDriverServer.exe");
+                InternetExplorerOptions internetExplorerOptions = new InternetExplorerOptions();
+                internetExplorerOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                driver = new InternetExplorerDriver(internetExplorerOptions);
                 break;
             }
         }
