@@ -39,7 +39,8 @@ public class PandashopOrder_PO extends Base_PO {
 
     public void clickOnEntryButton() {accountEntry.click();}
     public void waitAccountUserName(){ waitFor(accountUserName);}
-    public void setAccountUserName(String username) {sendKeys(accountUserName, username);}
+    public void setAccountUserName(String username) {
+        sendKeys(accountUserName, username);}
     public void setAccountPassword(String password) {sendKeys(accountPassword, password);}
     public void navigate_toPandashopHome() {
         navigate_To_URL(Global_Vars.PANDA_URL);

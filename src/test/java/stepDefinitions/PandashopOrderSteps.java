@@ -23,7 +23,8 @@ public class PandashopOrderSteps extends Base_PO {
         pandashopOrder_po.clickOnEntryButton();
     }
     @Given("I enter Panda username {}")
-    public void i_enter_a_panda_username(String username){
+    public void i_enter_a_panda_username(String username)  {
+
 
         pandashopOrder_po.setAccountUserName(username);
     }
@@ -58,9 +59,11 @@ public class PandashopOrderSteps extends Base_PO {
     @When("Click on Buy button")
     public void click_on_buy_button() {
         pandashopOrder_po.clickOnBuyButton();
+
+
     }
     @When("Click on Add-To-Cart button")
-    public void click_on_add_to_cart_button() {
+    public void click_on_add_to_cart_button(){
         //waitElementToBeClickable(By.className("a.btn.btn-green.w-100"));
         pandashopOrder_po.clickOnCartButton();
     }
