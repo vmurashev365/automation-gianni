@@ -22,16 +22,6 @@ public class PandashopOrderSteps extends Base_PO {
         pandashopOrder_po.navigate_toPandashopHome();
         pandashopOrder_po.clickOnEntryButton();
     }
-    @Given("I enter Panda username {}")
-    public void i_enter_a_panda_username(String username)  {
-
-
-        pandashopOrder_po.setAccountUserName(username);
-    }
-    @Given("I enter Panda password {}")
-    public void i_enter_a_panda_password(String password) {
-        pandashopOrder_po.setAccountPassword(password);
-    }
 
     @When("I click on search field, type {} and click on search button")
     public void i_click_on_search_field_type_sven_ps_and_click_on_search_button(String product) {
@@ -59,18 +49,37 @@ public class PandashopOrderSteps extends Base_PO {
     @When("Click on Buy button")
     public void click_on_buy_button() {
         pandashopOrder_po.clickOnBuyButton();
-
-
     }
+
     @When("Click on Add-To-Cart button")
-    public void click_on_add_to_cart_button(){
-        //waitElementToBeClickable(By.className("a.btn.btn-green.w-100"));
+    public void click_on_add_to_cart_button() {
+        //handle_window();
         pandashopOrder_po.clickOnCartButton();
     }
 
 
     @And("Click on Processed To Checkout Button")
     public void clickOnProcessedToCheckoutButton() {
+        //handle_window();
         pandashopOrder_po.clickOnPrepareBuyButton();
     }
+
+    @Given("I enter Panda username {}")
+    public void i_enter_a_panda_username(String username) {
+        //handle_window();
+        pandashopOrder_po.setAccountUserName(username);
+    }
+
+    @Given("I enter Panda password {}")
+    public void i_enter_a_panda_password(String password) {
+        pandashopOrder_po.setAccountPassword(password);
+    }
+
+    @Given("Click on Enter button")
+    public void click_on_enter_button() {
+        //handle_window();
+        pandashopOrder_po.clickOnEnterButton();
+    }
+
+
 }

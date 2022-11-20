@@ -11,7 +11,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.Global_Vars;
 
+import java.util.Set;
+import java.util.Iterator;
+
 import java.time.Duration;
+
 
 public class Base_PO {
 
@@ -26,6 +30,14 @@ public class Base_PO {
 
     public void navigate_To_URL(String url) {
         getDriver().get(url);
+    }
+
+    public void handle_window () {
+        Set<String> windows = getDriver().getWindowHandles();
+        Iterator<String>it = windows.iterator();
+        String parentID = it.next();
+        String childID = it.next();
+        getDriver().switchTo().window(childID);
     }
 
     public String generateRandomNumber(int length) {
@@ -57,6 +69,14 @@ public class Base_PO {
         wait.until(ExpectedConditions.alertIsPresent());
         String alertMessageText = getDriver().switchTo().alert().getText();
         Assert.assertEquals(alertMessageText, text);
+    }
+
+    public void waitForAlertAndCancelMessage() {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
+        wait.until(ExpectedConditions.alertIsPresent());
+        System.out.println(getDriver().switchTo().alert().getText());
+        getDriver().switchTo().alert().accept();
+
     }
 
     public void waitFor(By by) {

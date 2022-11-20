@@ -31,7 +31,7 @@ public class Hooks {
     }
 
     @After
-    public void tearDown() {
+    public void tearDown() throws InterruptedException {
         cleanupDriver();
     }
 }
