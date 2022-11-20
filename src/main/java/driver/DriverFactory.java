@@ -37,6 +37,7 @@ public class DriverFactory {
             case "chrome" -> {
                 System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/java/driver/drivers/chromedriver.exe");
                 ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--disable-notifications");
                 chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
                 driver = new ChromeDriver(chromeOptions);
                 break;
@@ -44,6 +45,7 @@ public class DriverFactory {
             case "firefox" -> {
                 System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "/src/main/java/driver/drivers/geckodriver.exe");
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.addArguments("--disable-notifications");
                 firefoxOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
                 driver = new FirefoxDriver(firefoxOptions);
                 break;
@@ -51,6 +53,7 @@ public class DriverFactory {
             case "edge" -> {
                 System.setProperty("webdriver.edge.driver", System.getProperty("user.dir") + "/src/main/java/driver/drivers/msedgedriver.exe");
                 EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--disable-notifications");
                 edgeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
                 driver = new EdgeDriver(edgeOptions);
                 break;
@@ -86,7 +89,8 @@ public class DriverFactory {
         return browserType;
     }
 
-    public static void cleanupDriver() {
+    public static void cleanupDriver() throws InterruptedException {
+        Thread.sleep(8000);
         webDriver.get().quit();
         webDriver.remove();
     }
