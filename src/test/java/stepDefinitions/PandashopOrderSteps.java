@@ -53,20 +53,18 @@ public class PandashopOrderSteps extends Base_PO {
 
     @When("Click on Add-To-Cart button")
     public void click_on_add_to_cart_button() {
-        //handle_window();
         pandashopOrder_po.clickOnCartButton();
     }
 
 
     @And("Click on Processed To Checkout Button")
     public void clickOnProcessedToCheckoutButton() {
-        //handle_window();
         pandashopOrder_po.clickOnPrepareBuyButton();
     }
 
     @Given("I enter Panda username {}")
-    public void i_enter_a_panda_username(String username) {
-        //handle_window();
+    public void i_enter_a_panda_username(String username) throws InterruptedException {
+        Thread.sleep(1000);
         pandashopOrder_po.setAccountUserName(username);
     }
 
@@ -77,7 +75,6 @@ public class PandashopOrderSteps extends Base_PO {
 
     @Given("Click on Enter button")
     public void click_on_enter_button() {
-        //handle_window();
         pandashopOrder_po.clickOnEnterButton();
     }
 
