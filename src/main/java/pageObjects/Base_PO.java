@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.Global_Vars;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.Set;
 import java.util.Iterator;
 
@@ -49,6 +51,13 @@ public class Base_PO {
         wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys(textToType);
     }
 
+    public void sendEcryptedKeys(WebElement element, String textToType) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
+        byte[] decodedPass = Base64.getDecoder().decode(textToType);
+        String decodedPassStr = new String(decodedPass, StandardCharsets.UTF_8);
+        wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys(decodedPassStr);
+    }
+
     public void sendKeys(By by, String textToType) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
         wait.until(ExpectedConditions.elementToBeClickable(by)).sendKeys(textToType);
@@ -63,6 +72,12 @@ public class Base_PO {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
+
+    public void waitElementToBeSelected(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
+        wait.until(ExpectedConditions.elementToBeSelected(element));
+    }
+
 
     public void waitForAlertAndValidateMessage(String text) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));

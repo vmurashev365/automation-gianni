@@ -12,8 +12,9 @@ Feature: PandaShop ordering product
     And Click on Add-To-Cart button
     And Click on Processed To Checkout Button
     And I enter Panda username vmurashev@gmail.com
-    And I enter Panda password Adonai!!!
+    And I enter Panda password QWRvbmFpISEh
     And Click on Enter button
+
 
 
 

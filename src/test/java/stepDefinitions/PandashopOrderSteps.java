@@ -1,11 +1,13 @@
 package stepDefinitions;
 
-import io.cucumber.java.en.*;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pageObjects.Base_PO;
 import pageObjects.PandashopOrder_PO;
-
 
 public class PandashopOrderSteps extends Base_PO {
     private WebDriver driver = getDriver();
