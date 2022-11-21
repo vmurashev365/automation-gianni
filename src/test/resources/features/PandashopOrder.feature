@@ -1,3 +1,4 @@
+@regression
 @pandashop
 
 Feature: PandaShop ordering product
