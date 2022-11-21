@@ -45,7 +45,7 @@ public class PandashopOrder_PO extends Base_PO {
     }
 
     public void setAccountPassword(String password) {
-        sendKeys(accountPassword, password);
+        sendEcryptedKeys(accountPassword, password);
     }
 
     public void navigate_toPandashopHome() {
