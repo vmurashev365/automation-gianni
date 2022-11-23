@@ -91,8 +91,8 @@ public class DriverFactory {
 
     public static void cleanupDriver() throws InterruptedException {
         //Thread.sleep(8000);
-        webDriver.get().quit();
-        webDriver.remove();
+        //webDriver.get().quit();
+        //webDriver.remove();
     }
 
 }

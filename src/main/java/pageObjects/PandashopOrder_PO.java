@@ -16,9 +16,30 @@ public class PandashopOrder_PO extends Base_PO {
     private @FindBy(css = ".btn.btn.btn-green.text-white.w-100.w-md-auto.btn-gotoSubmitOrder") WebElement prepare_buy_Button;
     //private @FindBy(xpath = "//input[@class='btn btn-green text-white w-100 w-md-auto btn-gotoSubmitOrder']") WebElement prepare_buy_Button;
     private @FindBy(xpath = "(//div[@class='col-12 mt-15px'])[1]") WebElement enter_Button;
+    private @FindBy(xpath = "//input[@name='name']") WebElement name_Last_Name;
+    private @FindBy(xpath = "/html/body/div[1]/div[2]/div/div/form/div[1]/div[1]/div[2]/div[3]/div[2]/div/div") WebElement phone;
+    private @FindBy(xpath = "//body/div[@class='body-inner']/div[@class='container-fluid container-fluid_wrapper']/div[@class='container-fluid_inner']/div[@class='wrapperDefault_inner']/form[@class='cart-mainOuter vld-form vld-form-cart']/div[@class='row']/div[@class='col-12 col-lg-8']/div/div[@class='radio-container mt-20px w-100']/div[@class='container-inner w-100']/span[1]") WebElement courierRadio;
+    private @FindBy(xpath = "(//span[@class='radio-box'])[4]") WebElement newAddressRadio;
+    private @FindBy(xpath = "(//ul[@id='ui-id-2'])[1]") WebElement city;
+    private @FindBy(xpath = "//input[@name='street-address']") WebElement streetAddress;
+    private @FindBy(xpath = "//input[@name='street-address-house']") WebElement streetAddressHouse;
+    private @FindBy(xpath = "//input[@name='street-address-apartment']") WebElement streetAddressApartment;
+    private @FindBy(xpath = "(//span[@class='radio-box'])[6]") WebElement bankTransferRadio;
+    private @FindBy(xpath = "//input[@name='companyName']") WebElement companyName;
+    private @FindBy(xpath = "//input[@name='bankCode']") WebElement bankCode;
+    private @FindBy(xpath = "//input[@name='bankAccount']") WebElement bankAccount;
+    private @FindBy(xpath = "//input[@name='addressJuridic']") WebElement addressJuridic;
+    private @FindBy(xpath = "//input[@name='codeFiscal']") WebElement codeFiscal;
+    private @FindBy(xpath = "(//input[@id='cbBonusExpenditure'])[1]") WebElement bonusCheckBox;
+    private @FindBy(xpath = "(//input[@id='txtBonusExpenditure'])[1]") WebElement bonusValue;
+    private @FindBy(xpath = "//textarea[@name='comment']") WebElement commentOfOrder;
 
 
-    public PandashopOrder_PO(WebElement accountEntry, WebElement accountUserName, WebElement accountPassword, WebElement searchProduct_TextField, WebElement searchProduct_Button, WebElement buy_Button, WebElement cart_Button, WebElement prepare_buy_Button, WebElement enter_Button) {
+    public PandashopOrder_PO(WebElement accountEntry, WebElement accountUserName, WebElement accountPassword, WebElement searchProduct_TextField,
+                             WebElement searchProduct_Button, WebElement buy_Button, WebElement cart_Button, WebElement prepare_buy_Button, WebElement enter_Button,
+                             WebElement name_Last_Name, WebElement phone, WebElement courierRadio, WebElement newAddressRadio, WebElement city, WebElement streetAddress,
+                             WebElement streetAddressHouse, WebElement streetAddressApartment, WebElement bankTransferRadio, WebElement companyName, WebElement bankCode,
+                             WebElement bankAccount, WebElement addressJuridic, WebElement codeFiscal, WebElement bonusCheckBox, WebElement bonusValue, WebElement commentOfOrder) {
         this.accountEntry = accountEntry;
         this.accountUserName = accountUserName;
         this.accountPassword = accountPassword;
@@ -28,6 +49,23 @@ public class PandashopOrder_PO extends Base_PO {
         this.cart_Button = cart_Button;
         this.prepare_buy_Button = prepare_buy_Button;
         this.enter_Button = enter_Button;
+        this.name_Last_Name = name_Last_Name;
+        this.phone = phone;
+        this.courierRadio = courierRadio;
+        this.newAddressRadio = newAddressRadio;
+        this.city = city;
+        this.streetAddress = streetAddress;
+        this.streetAddressHouse = streetAddressHouse;
+        this.streetAddressApartment = streetAddressApartment;
+        this.bankTransferRadio = bankTransferRadio;
+        this.companyName = companyName;
+        this.bankCode = bankCode;
+        this.bankAccount = bankAccount;
+        this.addressJuridic = addressJuridic;
+        this.codeFiscal = codeFiscal;
+        this.bonusCheckBox = bonusCheckBox;
+        this.bonusValue = bonusValue;
+        this.commentOfOrder = commentOfOrder;
     }
 
     public PandashopOrder_PO() {
@@ -76,5 +114,41 @@ public class PandashopOrder_PO extends Base_PO {
         waitElementToBeClickable(enter_Button);
     }
 
+    public void setBuyerName(String buyerName) {
+        clearField(name_Last_Name, buyerName);
+        sendKeys(name_Last_Name, buyerName);
+    }
 
+    public void setPhoneNumber(String phoneNumber) {
+        sendKeys(phone, phoneNumber);
+    }
+
+    public void setInfoForCourierDelivery(String cityName, String streetName, String house, String appartment) {
+        waitElementToBeClickableAndFocused(courierRadio);
+        waitElementToBeClickableAndFocused(newAddressRadio);
+        //selectDropDown(city, cityName);
+        sendKeys(streetAddress, streetName);
+        sendKeys(streetAddressHouse, house);
+        sendKeys(streetAddressApartment, appartment);
+    }
+
+    public void setInfoForBankTransfer(String company, String bank, String ibanNum, String address, String fiscalCode) {
+        waitElementToBeClickableAndFocused(bankTransferRadio);
+        sendKeys(companyName, company);
+        sendKeys(bankCode, bank);
+        sendKeys(bankAccount, ibanNum);
+        sendKeys(addressJuridic, address);
+        sendKeys(codeFiscal, fiscalCode);
+    }
+
+    public void setBonuses(String bonusVal) {
+        waitElementToBeSelected(bonusCheckBox);
+        clearField(bonusValue, bonusVal);
+        sendKeys(bonusValue, bonusVal);
+    }
+
+    public void setCommentText(String commentTxt) {
+        clearField(commentOfOrder, commentTxt);
+        sendKeys(commentOfOrder, commentTxt);
+    }
 }

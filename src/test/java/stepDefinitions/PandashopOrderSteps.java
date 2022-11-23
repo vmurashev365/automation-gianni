@@ -80,5 +80,34 @@ public class PandashopOrderSteps extends Base_PO {
         pandashopOrder_po.clickOnEnterButton();
     }
 
+    @Then("I enter my name and last name {}")
+    public void iEnterMyNameAndLastName(String buyerName) {
+        pandashopOrder_po.setBuyerName(buyerName);
+    }
+    @Then("I enter my phone {}")
+    public void i_enter_my_phone(String phone) {
+        pandashopOrder_po.setPhoneNumber(phone);
+    }
+    @And("I select delivery by Courier to address: city {}, str. {}, bl. {}, ap. {}")
+    public void iSelectDeliveryByCourierToAddress(String cityName, String streetName, String house, String appartment) {
+        pandashopOrder_po.setInfoForCourierDelivery(cityName, streetName, house, appartment);
+    }
+    @Then("I select to pay by Bank Transfer to Company {}, Bank {}, IBAN {}, address {}, fiscal {}")
+    public void i_select_to_pay_by_bank_transfer(String company, String bank, String ibanNum, String address, String fiscalCode) {
+        pandashopOrder_po.setInfoForBankTransfer(company, bank, ibanNum, address, fiscalCode);
+
+    }
+    @Then("I buy with bonuses {}")
+    public void i_buy_with_bonuses(String bonusVal) {
+        pandashopOrder_po.setBonuses(bonusVal);
+    }
+
+
+    @And("I enter the following note {}")
+    public void iEnterTheFollowingNoteNoteToTheOrder(String commentTxt) {
+        pandashopOrder_po.setCommentText(commentTxt);
+    }
+
+
 
 }
