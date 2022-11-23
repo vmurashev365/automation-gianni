@@ -5,18 +5,20 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.Global_Vars;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-import java.util.Set;
-import java.util.Iterator;
 
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
+import java.util.Base64;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.List;
 
 
 public class Base_PO {
@@ -51,6 +53,22 @@ public class Base_PO {
         wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys(textToType);
     }
 
+    public void selectDropDown(WebElement element, String textSelected) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        List<WebElement> citiesList=element.findElements(By.tagName("li"));
+        for (WebElement li : citiesList) {
+            if (li.getText().equals(textSelected)) {
+                li.click();
+            }
+        }
+    }
+
+    public void clearField (WebElement element, String textToType) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).clear();
+    }
+
     public void sendEcryptedKeys(WebElement element, String textToType) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
         byte[] decodedPass = Base64.getDecoder().decode(textToType);
@@ -73,9 +91,17 @@ public class Base_PO {
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
+    public void waitElementToBeClickableAndFocused(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        Actions actions = new Actions(getDriver());
+        actions.moveToElement(element).click().build().perform();
+    }
+
     public void waitElementToBeSelected(WebElement element) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
         wait.until(ExpectedConditions.elementToBeSelected(element));
+        element.isSelected();
     }
 
 
