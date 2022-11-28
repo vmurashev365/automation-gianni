@@ -4,6 +4,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utils.Global_Vars;
 
+import java.util.List;
+
+import static java.lang.Thread.sleep;
+
 public class PandashopOrder_PO extends Base_PO {
 
     private @FindBy(xpath = "//div[@class='profileIco ico d-none d-sm-inline']//a") WebElement accountEntry;
@@ -20,7 +24,8 @@ public class PandashopOrder_PO extends Base_PO {
     private @FindBy(xpath = "/html/body/div[1]/div[2]/div/div/form/div[1]/div[1]/div[2]/div[3]/div[2]/div/div") WebElement phone;
     private @FindBy(xpath = "//body/div[@class='body-inner']/div[@class='container-fluid container-fluid_wrapper']/div[@class='container-fluid_inner']/div[@class='wrapperDefault_inner']/form[@class='cart-mainOuter vld-form vld-form-cart']/div[@class='row']/div[@class='col-12 col-lg-8']/div/div[@class='radio-container mt-20px w-100']/div[@class='container-inner w-100']/span[1]") WebElement courierRadio;
     private @FindBy(xpath = "(//span[@class='radio-box'])[4]") WebElement newAddressRadio;
-    private @FindBy(xpath = "(//ul[@id='ui-id-2'])[1]") WebElement city;
+    private @FindBy(name = "city") WebElement city;
+    private @FindBy(xpath = "//li[@class='ui-menu-item city']")  List<WebElement> listCities;
     private @FindBy(xpath = "//input[@name='street-address']") WebElement streetAddress;
     private @FindBy(xpath = "//input[@name='street-address-house']") WebElement streetAddressHouse;
     private @FindBy(xpath = "//input[@name='street-address-apartment']") WebElement streetAddressApartment;
@@ -39,7 +44,8 @@ public class PandashopOrder_PO extends Base_PO {
                              WebElement searchProduct_Button, WebElement buy_Button, WebElement cart_Button, WebElement prepare_buy_Button, WebElement enter_Button,
                              WebElement name_Last_Name, WebElement phone, WebElement courierRadio, WebElement newAddressRadio, WebElement city, WebElement streetAddress,
                              WebElement streetAddressHouse, WebElement streetAddressApartment, WebElement bankTransferRadio, WebElement companyName, WebElement bankCode,
-                             WebElement bankAccount, WebElement addressJuridic, WebElement codeFiscal, WebElement bonusCheckBox, WebElement bonusValue, WebElement commentOfOrder) {
+                             WebElement bankAccount, WebElement addressJuridic, WebElement codeFiscal, WebElement bonusCheckBox, WebElement bonusValue, WebElement commentOfOrder,
+                             List<WebElement> listCities) {
         this.accountEntry = accountEntry;
         this.accountUserName = accountUserName;
         this.accountPassword = accountPassword;
@@ -66,6 +72,7 @@ public class PandashopOrder_PO extends Base_PO {
         this.bonusCheckBox = bonusCheckBox;
         this.bonusValue = bonusValue;
         this.commentOfOrder = commentOfOrder;
+        this.listCities = listCities;
     }
 
     public PandashopOrder_PO() {
@@ -79,6 +86,7 @@ public class PandashopOrder_PO extends Base_PO {
     }
 
     public void setAccountUserName(String username) {
+        waitElementToBeEnabled(accountUserName);
         sendKeys(accountUserName, username);
     }
 
@@ -123,10 +131,14 @@ public class PandashopOrder_PO extends Base_PO {
         sendKeys(phone, phoneNumber);
     }
 
-    public void setInfoForCourierDelivery(String cityName, String streetName, String house, String appartment) {
+    public void setInfoForCourierDelivery(String cityName, String streetName, String house, String appartment) throws InterruptedException {
         waitElementToBeClickableAndFocused(courierRadio);
         waitElementToBeClickableAndFocused(newAddressRadio);
-        //selectDropDown(city, cityName);
+
+        waitElementToBeClickable(city);
+        sendKeys(city, cityName);
+        sleep(2000);
+        suggestiveDropDown(listCities, cityName);
         sendKeys(streetAddress, streetName);
         sendKeys(streetAddressHouse, house);
         sendKeys(streetAddressApartment, appartment);
@@ -142,7 +154,7 @@ public class PandashopOrder_PO extends Base_PO {
     }
 
     public void setBonuses(String bonusVal) {
-        waitElementToBeSelected(bonusCheckBox);
+        waitElementToBeSelectedAndFocused(bonusCheckBox);
         clearField(bonusValue, bonusVal);
         sendKeys(bonusValue, bonusVal);
     }
