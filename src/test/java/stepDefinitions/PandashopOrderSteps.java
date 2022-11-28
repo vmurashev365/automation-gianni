@@ -89,7 +89,7 @@ public class PandashopOrderSteps extends Base_PO {
         pandashopOrder_po.setPhoneNumber(phone);
     }
     @And("I select delivery by Courier to address: city {}, str. {}, bl. {}, ap. {}")
-    public void iSelectDeliveryByCourierToAddress(String cityName, String streetName, String house, String appartment) {
+    public void iSelectDeliveryByCourierToAddress(String cityName, String streetName, String house, String appartment) throws InterruptedException {
         pandashopOrder_po.setInfoForCourierDelivery(cityName, streetName, house, appartment);
     }
     @Then("I select to pay by Bank Transfer to Company {}, Bank {}, IBAN {}, address {}, fiscal {}")

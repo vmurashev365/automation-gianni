@@ -8,17 +8,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.Global_Vars;
-
 
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.Base64;
 import java.util.Iterator;
-import java.util.Set;
 import java.util.List;
+import java.util.Set;
 
 
 public class Base_PO {
@@ -56,10 +56,21 @@ public class Base_PO {
     public void selectDropDown(WebElement element, String textSelected) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
         wait.until(ExpectedConditions.elementToBeClickable(element));
-        List<WebElement> citiesList=element.findElements(By.tagName("li"));
-        for (WebElement li : citiesList) {
-            if (li.getText().equals(textSelected)) {
-                li.click();
+        Select dropdown = new Select(element);
+        dropdown.selectByVisibleText(textSelected);
+    }
+
+    public void suggestiveDropDown(List<WebElement> element, String textSelected) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
+        //wait.until(ExpectedConditions.elementToBeClickable((By) element));
+        List<WebElement> options = element;
+        for(WebElement option :options){
+
+            if (option.getText().contains(textSelected))
+            {
+                System.out.println(option.getText());
+                option.click();
+                break;
             }
         }
     }
@@ -98,9 +109,22 @@ public class Base_PO {
         actions.moveToElement(element).click().build().perform();
     }
 
+    public void waitElementToBeEnabled(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).isEnabled();
+    }
+
     public void waitElementToBeSelected(WebElement element) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
         wait.until(ExpectedConditions.elementToBeSelected(element));
+        element.isSelected();
+    }
+
+    public void waitElementToBeSelectedAndFocused(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
+        wait.until(ExpectedConditions.elementToBeSelected(element));
+        Actions actions = new Actions(getDriver());
+        actions.moveToElement(element).click(element);
         element.isSelected();
     }
 
