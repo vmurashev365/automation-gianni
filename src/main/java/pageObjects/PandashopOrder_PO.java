@@ -35,7 +35,7 @@ public class PandashopOrder_PO extends Base_PO {
     private @FindBy(xpath = "//input[@name='bankAccount']") WebElement bankAccount;
     private @FindBy(xpath = "//input[@name='addressJuridic']") WebElement addressJuridic;
     private @FindBy(xpath = "//input[@name='codeFiscal']") WebElement codeFiscal;
-    private @FindBy(xpath = "(//input[@id='cbBonusExpenditure'])[1]") WebElement bonusCheckBox;
+    private @FindBy(css = "#cbBonusExpenditure") WebElement bonusCheckBox;
     private @FindBy(xpath = "(//input[@id='txtBonusExpenditure'])[1]") WebElement bonusValue;
     private @FindBy(xpath = "//textarea[@name='comment']") WebElement commentOfOrder;
 

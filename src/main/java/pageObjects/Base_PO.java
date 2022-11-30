@@ -122,9 +122,9 @@ public class Base_PO {
 
     public void waitElementToBeSelectedAndFocused(WebElement element) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
-        wait.until(ExpectedConditions.elementToBeSelected(element));
         Actions actions = new Actions(getDriver());
-        actions.moveToElement(element).click(element);
+        actions.moveToElement(element).click(element).perform();
+        wait.until(ExpectedConditions.elementToBeSelected(element));
         element.isSelected();
     }
 
