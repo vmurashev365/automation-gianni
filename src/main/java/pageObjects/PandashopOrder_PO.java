@@ -29,7 +29,7 @@ public class PandashopOrder_PO extends Base_PO {
     private @FindBy(xpath = "//input[@name='street-address']") WebElement streetAddress;
     private @FindBy(xpath = "//input[@name='street-address-house']") WebElement streetAddressHouse;
     private @FindBy(xpath = "//input[@name='street-address-apartment']") WebElement streetAddressApartment;
-    private @FindBy(xpath = "(//span[@class='radio-box'])[6]") WebElement bankTransferRadio;
+    private @FindBy(css = "label[class='radio-container d-flex mb-20px payway-Transfer'] span[class='radio-box']") WebElement bankTransferRadio;
     private @FindBy(xpath = "//input[@name='companyName']") WebElement companyName;
     private @FindBy(xpath = "//input[@name='bankCode']") WebElement bankCode;
     private @FindBy(xpath = "//input[@name='bankAccount']") WebElement bankAccount;
