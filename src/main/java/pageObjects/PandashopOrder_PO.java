@@ -17,7 +17,7 @@ public class PandashopOrder_PO extends Base_PO {
     private @FindBy(xpath = "(//i[@class='fa fa-search'])[1]") WebElement searchProduct_Button;
     private @FindBy(xpath = "//span[@class='oneProd-inCos-inner btn btn-green']") WebElement buy_Button;
     private @FindBy(xpath = "//a[@class='btn btn-green w-100']") WebElement cart_Button;
-    private @FindBy(css = ".btn.btn.btn-green.text-white.w-100.w-md-auto.btn-gotoSubmitOrder") WebElement prepare_buy_Button;
+    private @FindBy(css = ".text-center > input:nth-of-type(1)") WebElement prepare_buy_Button;
     //private @FindBy(xpath = "//input[@class='btn btn-green text-white w-100 w-md-auto btn-gotoSubmitOrder']") WebElement prepare_buy_Button;
     private @FindBy(xpath = "(//div[@class='col-12 mt-15px'])[1]") WebElement enter_Button;
     private @FindBy(xpath = "//input[@name='name']") WebElement name_Last_Name;
