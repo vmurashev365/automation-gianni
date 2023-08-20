@@ -25,6 +25,11 @@ public class PandashopOrderSteps extends Base_PO {
         pandashopOrder_po.clickOnEntryButton();
     }
 
+    @Given("I click on Log In icon")
+    public void i_click_on_log_in_icon() {
+        pandashopOrder_po.clickOnEntryButton();
+    }
+
     @When("I click on search field, type {} and click on search button")
     public void i_click_on_search_field_type_sven_ps_and_click_on_search_button(String product) {
         pandashopOrder_po.setProductName(product);
