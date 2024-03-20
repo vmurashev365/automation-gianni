@@ -10,8 +10,8 @@ import pageObjects.Base_PO;
 import pageObjects.PandashopOrder_PO;
 
 public class PandashopOrderSteps extends Base_PO {
-    private WebDriver driver = getDriver();
-    private PandashopOrder_PO pandashopOrder_po;
+    private final WebDriver driver = getDriver();
+    private final PandashopOrder_PO pandashopOrder_po;
 
 
     public PandashopOrderSteps(PandashopOrder_PO pandashopOrder_po) {

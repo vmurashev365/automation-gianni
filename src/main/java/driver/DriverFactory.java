@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class DriverFactory {
-    private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
 
     public static WebDriver getDriver() {
         if (webDriver.get() == null) {

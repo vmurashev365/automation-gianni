@@ -8,8 +8,8 @@ import pageObjects.Login_PO;
 
 
 public class LoginSteps extends Base_PO {
-    private WebDriver driver = getDriver();
-    private Login_PO login_po;
+    private final WebDriver driver = getDriver();
+    private final Login_PO login_po;
 
     public LoginSteps(Login_PO login_po) {
         this.login_po = login_po;
