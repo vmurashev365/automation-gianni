@@ -11,9 +11,9 @@ import pageObjects.Contact_Us_PO;
 
 public class contactUsSteps extends Base_PO {
 
-    private WebDriver driver = (WebDriver) getDriver();
+    private final WebDriver driver = getDriver();
 
-    private Contact_Us_PO contact_us_po;
+    private final Contact_Us_PO contact_us_po;
 
     public contactUsSteps(Contact_Us_PO contact_us_po) {
         this.contact_us_po = contact_us_po;
