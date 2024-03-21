@@ -48,21 +48,26 @@ public class Base_PO {
         return RandomStringUtils.randomNumeric(length);
     }
 
+    private WebDriverWait getWebDriverWait() {
+        return new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
+    }
+
+    private Actions performActions() {
+        return new Actions(getDriver());
+    }
+
+
     public void sendKeys(WebElement element, String textToType) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
-        wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys(textToType);
+        getWebDriverWait().until(ExpectedConditions.elementToBeClickable(element)).sendKeys(textToType);
     }
 
     public void selectDropDown(WebElement element, String textSelected) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+        getWebDriverWait().until(ExpectedConditions.elementToBeClickable(element));
         Select dropdown = new Select(element);
         dropdown.selectByVisibleText(textSelected);
     }
 
     public void suggestiveDropDown(List<WebElement> element, String textSelected) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
-        //wait.until(ExpectedConditions.elementToBeClickable((By) element));
         List<WebElement> options = element;
         for(WebElement option :options){
 
@@ -76,82 +81,52 @@ public class Base_PO {
     }
 
     public void clearField (WebElement element, String textToType) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
-        wait.until(ExpectedConditions.elementToBeClickable(element)).clear();
+        getWebDriverWait().until(ExpectedConditions.elementToBeClickable(element)).clear();
     }
 
     public void sendEcryptedKeys(WebElement element, String textToType) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
         byte[] decodedPass = Base64.getDecoder().decode(textToType);
         String decodedPassStr = new String(decodedPass, StandardCharsets.UTF_8);
-        wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys(decodedPassStr);
-    }
-
-    public void sendKeys(By by, String textToType) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
-        wait.until(ExpectedConditions.elementToBeClickable(by)).sendKeys(textToType);
+        getWebDriverWait().until(ExpectedConditions.elementToBeClickable(element)).sendKeys(decodedPassStr);
     }
 
     public void waitElementToBeClickable(By by) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
-        wait.until(ExpectedConditions.elementToBeClickable(by)).click();
+        getWebDriverWait().until(ExpectedConditions.elementToBeClickable(by)).click();
     }
 
     public void waitElementToBeClickable(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
-        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        getWebDriverWait().until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
     public void waitElementToBeClickableAndFocused(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-        Actions actions = new Actions(getDriver());
-        actions.moveToElement(element).click().build().perform();
+        getWebDriverWait().until(ExpectedConditions.elementToBeClickable(element));
+        performActions().moveToElement(element).click().build().perform();
     }
 
     public void waitElementToBeEnabled(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
-        wait.until(ExpectedConditions.elementToBeClickable(element)).isEnabled();
-    }
-
-    public void waitElementToBeSelected(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
-        wait.until(ExpectedConditions.elementToBeSelected(element));
-        element.isSelected();
+        getWebDriverWait().until(ExpectedConditions.elementToBeClickable(element)).isEnabled();
     }
 
     public void waitElementToBeSelectedAndFocused(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
-        Actions actions = new Actions(getDriver());
-        actions.moveToElement(element).click(element).perform();
-        wait.until(ExpectedConditions.elementToBeSelected(element));
+        performActions().moveToElement(element).click(element).perform();
+        getWebDriverWait().until(ExpectedConditions.elementToBeSelected(element));
         element.isSelected();
     }
 
 
     public void waitForAlertAndValidateMessage(String text) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
-        wait.until(ExpectedConditions.alertIsPresent());
+        getWebDriverWait().until(ExpectedConditions.alertIsPresent());
         String alertMessageText = getDriver().switchTo().alert().getText();
         Assert.assertEquals(alertMessageText, text);
     }
 
-    public void waitForAlertAndCancelMessage() {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
-        wait.until(ExpectedConditions.alertIsPresent());
-        System.out.println(getDriver().switchTo().alert().getText());
-        getDriver().switchTo().alert().accept();
-
-    }
 
     public void waitFor(By by) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
+        getWebDriverWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
     }
 
     public void waitFor(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
-        wait.until(ExpectedConditions.visibilityOf(element));
+        getWebDriverWait().until(ExpectedConditions.visibilityOf(element));
     }
 
 }
