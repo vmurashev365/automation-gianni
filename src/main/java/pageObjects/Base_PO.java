@@ -23,7 +23,11 @@ import java.util.Set;
 
 public class Base_PO {
 
+    private WebDriverWait webDriverWait;
+    private WebDriver webDriver;
     public Base_PO() {
+        webDriver = DriverFactory.getDriver();
+        webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
         PageFactory.initElements(getDriver(), this);
     }
 
