@@ -21,7 +21,7 @@ public class Contact_Us_PO extends Base_PO {
     }
 
     public void navigateWebDriverContactUsPage() {
-        navigate_To_URL(Global_Vars.HOME_URL + "/Contact-Us/contactus.html");
+        navigate_To_URL(Global_Vars.HOME_URL + Global_Vars.CONTACTUS_SUFFIX);
     }
 
 

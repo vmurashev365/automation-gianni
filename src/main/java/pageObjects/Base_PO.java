@@ -23,7 +23,11 @@ import java.util.Set;
 
 public class Base_PO {
 
+    private WebDriverWait webDriverWait;
+    private WebDriver webDriver;
     public Base_PO() {
+        webDriver = DriverFactory.getDriver();
+        webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(Global_Vars.DEFAULT_TIMEOUT));
         PageFactory.initElements(getDriver(), this);
     }
 
@@ -36,9 +40,9 @@ public class Base_PO {
         getDriver().get(url);
     }
 
-    public void handle_window () {
+    public void handle_window() {
         Set<String> windows = getDriver().getWindowHandles();
-        Iterator<String>it = windows.iterator();
+        Iterator<String> it = windows.iterator();
         String parentID = it.next();
         String childID = it.next();
         getDriver().switchTo().window(childID);
@@ -56,6 +60,10 @@ public class Base_PO {
         return new Actions(getDriver());
     }
 
+    private Select dropdown() {
+        return new Select((WebElement) getDriver());
+    }
+
 
     public void sendKeys(WebElement element, String textToType) {
         getWebDriverWait().until(ExpectedConditions.elementToBeClickable(element)).sendKeys(textToType);
@@ -63,16 +71,14 @@ public class Base_PO {
 
     public void selectDropDown(WebElement element, String textSelected) {
         getWebDriverWait().until(ExpectedConditions.elementToBeClickable(element));
-        Select dropdown = new Select(element);
-        dropdown.selectByVisibleText(textSelected);
+        dropdown().selectByVisibleText(textSelected);
     }
 
     public void suggestiveDropDown(List<WebElement> element, String textSelected) {
         List<WebElement> options = element;
-        for(WebElement option :options){
+        for (WebElement option : options) {
 
-            if (option.getText().contains(textSelected))
-            {
+            if (option.getText().contains(textSelected)) {
                 System.out.println(option.getText());
                 option.click();
                 break;
@@ -80,7 +86,7 @@ public class Base_PO {
         }
     }
 
-    public void clearField (WebElement element, String textToType) {
+    public void clearField(WebElement element, String textToType) {
         getWebDriverWait().until(ExpectedConditions.elementToBeClickable(element)).clear();
     }
 
