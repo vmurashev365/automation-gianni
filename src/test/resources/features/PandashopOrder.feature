@@ -5,10 +5,12 @@ Feature: PandaShop ordering product
 
   Background:
     Given I access the Pandashop home page
+
     And I click on Log In icon
     And I enter Panda username vmurashev@gmail.com
     And I enter Panda password QWRvbmFpISEh
     And Click on Enter button
+
 
   Scenario: Validate searching and preparing order in Panda Shop
 

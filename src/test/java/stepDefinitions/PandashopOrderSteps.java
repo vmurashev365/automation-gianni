@@ -18,11 +18,20 @@ public class PandashopOrderSteps extends Base_PO {
         this.pandashopOrder_po = pandashopOrder_po;
     }
 
+
+
     @Given("I access the Pandashop home page")
     public void i_access_the_pandashop_home_page() {
 
         pandashopOrder_po.navigate_toPandashopHome();
         pandashopOrder_po.clickOnEntryButton();
+    }
+    @Given("I check for any popup box")
+    public void i_check_for_any_popup_box() {
+        By popupSelectorBody = By.cssSelector("div.popup-body");
+        By closePopupSelector = By.cssSelector("div.popup-close");
+      //pandashopOrder_po.closePopupMessage(popupSelectorBody, closePopupSelector);
+        setupPopupCloser(popupSelectorBody, closePopupSelector);
     }
 
     @Given("I click on Log In icon")
@@ -73,6 +82,7 @@ public class PandashopOrderSteps extends Base_PO {
     public void i_enter_a_panda_username(String username) throws InterruptedException {
         Thread.sleep(1000);
         pandashopOrder_po.setAccountUserName(username);
+
     }
 
     @Given("I enter Panda password {}")
