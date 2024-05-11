@@ -1,5 +1,6 @@
 package pageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utils.Global_Vars;
@@ -15,7 +16,7 @@ public class PandashopOrder_PO extends Base_PO {
     private @FindBy(xpath = "//input[@id='txtEmail']") WebElement accountUserName;
     private @FindBy(xpath = "//input[@id='txtPassword']") WebElement accountPassword;
     private @FindBy(xpath = "//input[@class='searchPnl-input ui-autocomplete-input']") WebElement searchProduct_TextField;
-    private @FindBy(xpath = "(//i[@class='fa fa-search'])[1]") WebElement searchProduct_Button;
+    private @FindBy(css = "i.fa.fa-search") WebElement searchProduct_Button;
     private @FindBy(xpath = "//span[@class='oneProd-inCos-inner btn btn-green']") WebElement buy_Button;
     private @FindBy(xpath = "//a[@class='btn btn-green w-100']") WebElement cart_Button;
     private @FindBy(css = ".text-center > input:nth-of-type(1)") WebElement prepare_buy_Button;
@@ -39,6 +40,8 @@ public class PandashopOrder_PO extends Base_PO {
     private @FindBy(css = "#cbBonusExpenditure") WebElement bonusCheckBox;
     private @FindBy(xpath = "(//input[@id='txtBonusExpenditure'])[1]") WebElement bonusValue;
     private @FindBy(xpath = "//textarea[@name='comment']") WebElement commentOfOrder;
+    private @FindBy(css = "div.popup-body") WebElement popupSelectorBody;
+    private @FindBy(css = "div.popup-close") WebElement closePopupSelector;
 
 
     public PandashopOrder_PO(WebElement accountEntry, WebElement accountUserName, WebElement accountPassword, WebElement searchProduct_TextField,
@@ -46,7 +49,7 @@ public class PandashopOrder_PO extends Base_PO {
                              WebElement name_Last_Name, WebElement phone, WebElement courierRadio, WebElement newAddressRadio, WebElement city, WebElement streetAddress,
                              WebElement streetAddressHouse, WebElement streetAddressApartment, WebElement bankTransferRadio, WebElement companyName, WebElement bankCode,
                              WebElement bankAccount, WebElement addressJuridic, WebElement codeFiscal, WebElement bonusCheckBox, WebElement bonusValue, WebElement commentOfOrder,
-                             List<WebElement> listCities) {
+                             List<WebElement> listCities, WebElement popupSelectorBody, WebElement closePopupSelector) {
         this.accountEntry = accountEntry;
         this.accountUserName = accountUserName;
         this.accountPassword = accountPassword;
@@ -74,6 +77,8 @@ public class PandashopOrder_PO extends Base_PO {
         this.bonusValue = bonusValue;
         this.commentOfOrder = commentOfOrder;
         this.listCities = listCities;
+        this.popupSelectorBody = popupSelectorBody;
+        this.closePopupSelector = closePopupSelector;
     }
 
     public PandashopOrder_PO() {
@@ -163,5 +168,9 @@ public class PandashopOrder_PO extends Base_PO {
     public void setCommentText(String commentTxt) {
         clearField(commentOfOrder, commentTxt);
         sendKeys(commentOfOrder, commentTxt);
+    }
+
+    public void closePopupMessage(By popupSelectorBody, By closePopupSelector) {
+        closePopupIfPresent(popupSelectorBody, closePopupSelector);
     }
 }
