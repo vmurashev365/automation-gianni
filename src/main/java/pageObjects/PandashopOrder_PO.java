@@ -142,7 +142,7 @@ public class PandashopOrder_PO extends Base_PO {
         waitElementToBeClickableAndFocused(newAddressRadio);
 
         waitElementToBeClickable(city);
-        sendKeys(city, cityName);
+        sendKeysFill(city, cityName);
         sleep(2000);
         suggestiveDropDown(listCities, cityName);
         sendKeys(streetAddress, streetName);

@@ -10,6 +10,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
+import java.util.Collections;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -34,14 +35,42 @@ public class DriverFactory {
         WebDriver driver = null;
 
         switch (getBrowserType()) {
-            case "chrome" -> {
+            /*case "chrome" -> {
                 System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/java/driver/drivers/chromedriver.exe");
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--disable-notifications");
                 chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
                 driver = new ChromeDriver(chromeOptions);
                 break;
+            }*/
+
+            case "chrome" -> {
+                System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/java/driver/drivers/chromedriver.exe");
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--disable-notifications");
+                // Установка пользовательского User Agent
+                String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (HTML, like Gecko) Chrome/124.0.0.0 Safari/537.36";
+                chromeOptions.addArguments("--user-agent=" + userAgent);
+                // Отключение автоматической загрузки
+                chromeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+                // Установка языковых параметров
+                chromeOptions.addArguments("--lang=en-US");
+                // Отключение расширений
+                chromeOptions.addArguments("--disable-extensions");
+                // Максимизация окна браузера
+                chromeOptions.addArguments("--start-maximized");
+                // Отключение использования sandbox
+                chromeOptions.addArguments("--no-sandbox");
+                // Отключение программного рендеринга
+                chromeOptions.addArguments("--disable-software-rasterizer");
+                chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
+                //chromeOptions.setBinary("C:/tmp1/chrome-win64/chrome.exe");
+                chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                driver = new ChromeDriver(chromeOptions);
+                break;
             }
+
+
             case "firefox" -> {
                 System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "/src/main/java/driver/drivers/geckodriver.exe");
                 FirefoxOptions firefoxOptions = new FirefoxOptions();

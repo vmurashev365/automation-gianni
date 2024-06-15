@@ -1,5 +1,6 @@
-@regression
+@crunchiroll
 
+  ## npx playwright codegen https://www.crunchyroll.com/
 Feature: Test cases for Crunchroll
 
   Scenario: TC3.1 - Search in the top results section
