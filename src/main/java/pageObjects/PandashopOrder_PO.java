@@ -19,19 +19,19 @@ public class PandashopOrder_PO extends Base_PO {
     private @FindBy(css = "i.fa.fa-search") WebElement searchProduct_Button;
     private @FindBy(xpath = "//span[@class='oneProd-inCos-inner btn btn-green']") WebElement buy_Button;
     private @FindBy(xpath = "//a[@class='btn btn-green w-100']") WebElement cart_Button;
-    private @FindBy(css = ".text-center > input:nth-of-type(1)") WebElement prepare_buy_Button;
+    private @FindBy(css = ".cart-aside-inner > button[name='btnNextStep']") WebElement prepare_buy_Button;
     //private @FindBy(xpath = "//input[@class='btn btn-green text-white w-100 w-md-auto btn-gotoSubmitOrder']") WebElement prepare_buy_Button;
     private @FindBy(xpath = "(//div[@class='col-12 mt-15px'])[1]") WebElement enter_Button;
     private @FindBy(xpath = "//input[@name='name']") WebElement name_Last_Name;
     private @FindBy(xpath = "/html/body/div[1]/div[2]/div/div/form/div[1]/div[1]/div[2]/div[3]/div[2]/div/div") WebElement phone;
     private @FindBy(xpath = "//body/div[@class='body-inner']/div[@class='container-fluid container-fluid_wrapper']/div[@class='container-fluid_inner']/div[@class='wrapperDefault_inner']/form[@class='cart-mainOuter vld-form vld-form-cart']/div[@class='row']/div[@class='col-12 col-lg-8']/div/div[@class='radio-container mt-20px w-100']/div[@class='container-inner w-100']/span[1]") WebElement courierRadio;
-    private @FindBy(xpath = "(//span[@class='radio-box'])[4]") WebElement newAddressRadio;
+    private @FindBy(css = "div:nth-of-type(2) > .radio-container > span.radio-txt") WebElement newAddressRadio;
     private @FindBy(name = "city") WebElement city;
     private @FindBy(xpath = "//li[@class='ui-menu-item city']")  List<WebElement> listCities;
     private @FindBy(xpath = "//input[@name='street-address']") WebElement streetAddress;
     private @FindBy(xpath = "//input[@name='street-address-house']") WebElement streetAddressHouse;
     private @FindBy(xpath = "//input[@name='street-address-apartment']") WebElement streetAddressApartment;
-    private @FindBy(css = "label[class='radio-container d-flex mb-20px payway-Transfer'] span[class='radio-box']") WebElement bankTransferRadio;
+    private @FindBy(css = ".cart-tile.cart-tile-Transfer > .cart-tile-body") WebElement bankTransferRadio;
     private @FindBy(xpath = "//input[@name='companyName']") WebElement companyName;
     private @FindBy(xpath = "//input[@name='bankCode']") WebElement bankCode;
     private @FindBy(xpath = "//input[@name='bankAccount']") WebElement bankAccount;
@@ -138,7 +138,7 @@ public class PandashopOrder_PO extends Base_PO {
     }
 
     public void setInfoForCourierDelivery(String cityName, String streetName, String house, String appartment) throws InterruptedException {
-        waitElementToBeClickableAndFocused(courierRadio);
+        //waitElementToBeClickableAndFocused(courierRadio);
         waitElementToBeClickableAndFocused(newAddressRadio);
 
         waitElementToBeClickable(city);
